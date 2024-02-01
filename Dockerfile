@@ -15,7 +15,8 @@ RUN dotnet publish --ucr --no-restore  -o /app
 # final stage/image
 FROM lsameerdheen/dotnet8alphine:v.0.0.1
 # copy and publish app and libraries
-EXPOSE 5000
+ENV ASPNETCORE_URLS=http://*:8080
+EXPOSE 8080
 WORKDIR /app
 COPY --from=build /app .
 # Uncomment to enable non-root user
